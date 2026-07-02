@@ -5,10 +5,9 @@ on:
     workflows: ["Build app"]
     types:
       - completed
-    branches:
-      - 'main'
 jobs:
-  abc:
+  on-success:
+    if: ${{github.event.workflow_run.conclusion == 'success'}}
     name: "Build image"
     runs-on: ubuntu-latest
     steps:
