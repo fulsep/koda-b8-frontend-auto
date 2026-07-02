@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Login to ghcr.io
-        run: echo -n ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io
+        run: echo -n ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io --username ${{github.actor}} --password-stdin
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
