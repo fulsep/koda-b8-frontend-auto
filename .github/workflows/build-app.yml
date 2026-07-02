@@ -37,6 +37,9 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           artifact-ids: ${{needs.build-app.outputs.output1}}
+      - name: list current dir
+        run: |
+          ls -l
       - name: Build image
         run: docker build -t ghcr.io/${{github.repository}}:latest build-result/
       - name: Push image to ghcr
