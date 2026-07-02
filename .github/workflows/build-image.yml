@@ -3,7 +3,8 @@ run-name: Build image to ghcr.io
 on:
   workflow_run:
     workflows: ["Build app"]
-    types: [requested]
+    types:
+      - completed
     branches:
       - 'main'
 jobs:
