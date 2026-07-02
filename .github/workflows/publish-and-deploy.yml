@@ -36,8 +36,13 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           artifact-ids: ${{needs.build-app.outputs.output1}}
+      - name: Compress artifact
+        run: zip -r frontend-app.zip ./*
       - name: Release
         uses: softprops/action-gh-release@v3
+        with:
+          files: |
+            frontend-app.zip
   on-success:
     name: "Build image"
     needs: build-app
