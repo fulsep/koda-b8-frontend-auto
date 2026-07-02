@@ -1,0 +1,25 @@
+name: Build app
+run-name: build react app to dist/
+on:
+  push:
+    tags:
+      - v*
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup nodejs
+        uses: actions/setup-node@v6
+        with:
+          node_version: "26.4.0"
+      - name: get source
+        uses: actions/checkout@v7
+      - name: install nodejs deps
+        run: npm install
+      - name: build app
+        run: npm run build
+      - name: Save artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: build-result
+          path: dist/
